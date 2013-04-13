@@ -46,7 +46,7 @@
 									 <div class="row-fluid">
 										<div class="span8">
 											<h3> Lil' Dragon - Glenview Martial Arts and Fitness</h3>
-											<h6>2735 Pfingsten Rd, Glenview, IL, USA</h6>
+											<h6 id="address">2735 Pfingsten Rd, Glenview, IL, USA</h6>
 										
 											<div class= "span10">
 											
@@ -67,8 +67,12 @@
 													
 														<div class="tab-pane fade" id="map">
 														<div class="span7">
-															<iframe width="425" height="350"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+															<div id="map_canvas" style="width:616px;height:350px"> </div>
+															
+															<br />
+															<small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 														</div>
+														
 														</div>
 														<div class="tab-pane fade" id="calendar">
 															<form class="form-horizontal qtyFrm">
@@ -249,26 +253,9 @@
 										     </table>
 					
 											  </div>
-											  
- 
-											   
-											   
-											   
-											   
-											   
-											   
-											   
-											   
-											 
-											
-	
-											
+											 															
 										</div>
-										
-									
-											
-										
-										</div>
+								</div>
 									
 								</div>
 	
@@ -375,7 +362,7 @@ jQuery(document).ready(function() {
  -->
 <script type="text/javascript">
 jQuery(document).ready(function() {
- 
+
   jQuery(".expandable-content2b").hide();
     jQuery(".expandable-content12b").hide();
   //toggle the componenet with class msg_body
@@ -394,6 +381,45 @@ jQuery(document).ready(function() {
   });
   
 });
+
+</script>
+  
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvYPF1ccLUujlU7XITVaJAWBH8JwMOSso&sensor=true"></script>
+	
+<script type="text/javascript">
+function codeAddress(address) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+		if("undefined" == typeof(map)){
+			var myOptions = {
+				zoom: 13,
+				center: results[0].geometry.location,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}	
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        }
+		
+		var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+		map.setCenter(marker.getPosition());
+		
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
+	var map;
+	var geocoder;
+	jQuery(document).ready(function() {
+		geocoder = new google.maps.Geocoder();
+		var x = document.getElementById('address');
+		codeAddress(x.innerHTML);
+	}
+
+);
 
 </script>
 	
