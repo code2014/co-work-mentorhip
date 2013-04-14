@@ -66,12 +66,12 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="map">
-                                       
-                                            <div id="map_canvas" style="width: 616px; height: 350px"></div>
+                                        <div class="span7">
+                                            <div id="map_canvas" style="width: 615px; height: 345px"></div>
 
                                             <br />
                                             <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A" style="color: #0000FF; text-align: left">View Larger Map</a></small>
-                                        
+                                        </div>
 
                                     </div>
 									
@@ -360,19 +360,12 @@
 
         <script>
             $(document).ready(function () {
-
                 $('.jRating').jRating();
-
                 $('.jRating').jRating({
-
                     step: false, // no step
-
                     length: 5, // show 10 stars at the init
-
                     type: 'small' // show small stars instead of big default stars
-
                 });
-
             });
 
         </script>
@@ -404,11 +397,8 @@ jQuery(document).ready(function() {
                     jQuery(this).next(".expandable-content2b").slideToggle(500);
                     jQuery(".expandable-heading-trigger").show();
                     jQuery(".expandable-content12b").hide();
-
                 });
-
             });
-
         </script>
 
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvYPF1ccLUujlU7XITVaJAWBH8JwMOSso&sensor=true"></script>
