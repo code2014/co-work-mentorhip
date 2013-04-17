@@ -61,15 +61,15 @@
      
         	 </div>
         	   <div class="span8 pull-left">
-           <iframe width="600" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+           <iframe width="688" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=42.045458,-87.698856&amp;sspn=0.062719,0.169086&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;t=m&amp;z=14&amp;ll=42.103833,-87.849039&amp;output=embed"></iframe>
 
 
                     <br />
-                    <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=39.739318,-89.266507&amp;sspn=8.596357,14.128418&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;ll=42.103833,-87.849039&amp;spn=0.008103,0.013797&amp;z=14&amp;iwloc=A" style="color: #0000FF; text-align: left">View Larger Map</a></small>        	   </div>
+                    <small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=zh-CN&amp;geocode=&amp;q=2735+Pfingsten+Rd,+Glenview,+IL,+USA&amp;aq=&amp;sll=42.045458,-87.698856&amp;sspn=0.062719,0.169086&amp;ie=UTF8&amp;hq=&amp;hnear=2735+Pfingsten+Rd,+Glenview,+Illinois+60026&amp;t=m&amp;z=14&amp;ll=42.103833,-87.849039" style="color:#0000FF;text-align:left">View Larger Map</a></small>        	   </div>
         	</div>
         	
         </div>
-        
+
         
         <div class="container">
             <div class="container-fluid">
@@ -78,15 +78,18 @@
                       <label class="control-label" for="inputEmail">Search</label>
                       <input type="text" id="inputEmail" placeholder=" " style="width:157px;">
                     </form>
-                    <p>Distance from location</p>
-                    <select style="width:171px;">
-                      <option>5 miles</option>
-                      <option>10 miles</option>
-                      <option>15 miles</option>
-                      <option>25 miles</option>
-                      <option>50 miles</option>
-                      <option>any distance</option>
-                    </select>
+                    <form class="form-inline">
+                      <lable class="control-label">Distance from location</lable>
+                      <select style="width:171px;">
+                        <option>5 miles</option>
+                        <option>10 miles</option>
+                        <option>15 miles</option>
+                        <option>25 miles</option>
+                        <option>50 miles</option>
+                        <option>any distance</option>
+                      </select>
+                    </form>
+                    
                     <form class="form-inline">
                       <label class="control-label" for="inputEmail">City</label>
                       <input type="text" id="inputEmail" placeholder=" " style="width:157px;">
@@ -133,7 +136,19 @@
                     </select>
                 </div>
                 <div class="span8 pull-left">
-                    <h4>Search results for "Evanston Club":</h4>
+                    <div class="row">
+                      <div class="span4"><h4>Search results for "Evanston Club":</h4></div>
+                      <div class="span3 pull-right">
+                        <select>
+                          <option>Sort by</option>
+                          <option>Distance</option>
+                          <option>Price(low to high)</option>
+                          <option>Price(high to low)</option>
+                          <option>Most Popular</option>
+                          <option>Average Customer Review</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="row">
                         <div class="span2 ">
                             <img src="themes/images/provider/northparkdistrict.jpg" width="200" height="100" />
@@ -151,26 +166,63 @@
                         <div class="span6">
                             <table class="table table-striped">
                                 <tr class="info">
-                                    <th>  Course </th><th>  Date </th><th>   Days </th><th> Time </th><th>  Price</th>
-                                    <th>  Age</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Days</th>
+                                    <th>Time</th>
+                                    <th>Age</th>
+                                    <th>#Available Slots</th>
+                                    <th>#Total Slots</th>
+                                    <th>Price</th>
                                 </tr>
-                                 <tr >
-                                    <td><a href="course_info.html">Soccer</a></td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>8-12</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td>8-12</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td><a href="course_info.html">Soccer(15+)</a></td><td> Jun. 20 - Jul. 30 </td><td> T,Th,Sat  </td><td>2:00pm - 4:30pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$200</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 20 - Jul. 30</td>
+                                    <td>T,Th,Sat</td>
+                                    <td>2:00pm - 4:30pm</td>
+                                    <td>15+</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$200</a></td>
                                 </tr>
-                                       <tr >
-                                    <td><a href="course_info.html">Basketball(<10)</a></td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Basketball</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td><10</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td><a href="course_info.html">swimming(10+)</a></td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">swimming</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td><td>10+</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td><a href="course_info.html">Soccer(8-12)</a></td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
-                                </tr>
-                                       <tr >
-                                    <td>  </td><td>  </td><td>   </td><td></td><td>    </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td>8-12</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -190,28 +242,65 @@
                             
                         </div>
                         <div class="span6">
-                        
                             <table class="table table-striped">
                                 <tr class="info">
-                                    <th>  Course </th><th>  Date </th><th>   Days </th><th> Time </th><th>  Price</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Days</th>
+                                    <th>Time</th>
+                                    <th>Age</th>
+                                    <th>#Available Slots</th>
+                                    <th>#Total Slots</th>
+                                    <th>Price</th>
                                 </tr>
-                                 <tr >
-                                    <td> Soccer(8-12) </td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td>8-12</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td> Soccer(15+)  </td><td> Jun. 20 - Jul. 30 </td><td> T,Th,Sat  </td><td>2:00pm - 4:30pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$200</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 20 - Jul. 30</td>
+                                    <td>T,Th,Sat</td>
+                                    <td>2:00pm - 4:30pm</td>
+                                    <td>15+</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$200</a></td>
                                 </tr>
-                                       <tr >
-                                    <td>  Basketball(<10) </td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">Basketball</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td><10</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td>  swimming(10+) </td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
+                                <tr >
+                                    <td><a href="course_info.html">swimming</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td><td>10+</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
-                                       <tr >
-                                    <td>Soccer(8-12)   </td><td> Jun. 19 - Jul. 20 </td><td>  Mon,Tues </td><td>5:00pm - 7:00pm</td><td>   <a class="btn btn-success btn-small btn-block" href="#">$360</a>   </td>
-                                </tr>
-                                       <tr >
-                                    <td>  </td><td>  </td><td>   </td><td></td><td>    </td>
+                                <tr >
+                                    <td><a href="course_info.html">Soccer</a></td>
+                                    <td>Jun. 19 - Jul. 20</td>
+                                    <td>Mo,Tu</td>
+                                    <td>5:00pm - 7:00pm</td>
+                                    <td>8-12</td>
+                                    <td>8</td>
+                                    <td>12</td>
+                                    <td><a class="btn btn-success btn-small btn-block" href="#">$360</a></td>
                                 </tr>
                             </table>
                         </div>
