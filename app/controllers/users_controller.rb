@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
     #@q = @q.all(:conditions => "details_type = 'Company' OR 'Individual'")
     @users = @q.result(:distinct => true).page(params[:page]).per(20)  
-    
+    @json = User.all.to_gmaps4rails
 
   end
 
