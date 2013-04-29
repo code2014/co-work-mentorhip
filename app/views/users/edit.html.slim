@@ -1,0 +1,24 @@
+.container-fluid
+  h1 Editing user
+  .row.span6.well style="margin-left: 206px;"
+    -if (@user.details_type == "Company")
+      == render 'company/form'
+    -elsif (@user.details_type == "Individual")
+      == render 'individual/form'
+    -elsif (@user.details_type == "Purchaser")
+      == render 'purchaser/form'
+    -else
+      = form_for @user do |f|
+        - if @user.errors.any?
+          #error_explanation
+            h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+            ul
+              - @user.errors.full_messages.each do |message|
+                li = message
+
+        == render 'form_credentials', :f => f
+        == render 'form', :f => f
+        = f.submit 'Update', :class=>"btn"
+      = link_to 'Show', @user
+      ' &nbsp;|
+      = link_to 'Back', users_path

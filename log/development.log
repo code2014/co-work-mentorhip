@@ -1,0 +1,1254 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateUsers (20130114001155)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "school" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "other" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130114001155')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to AddPasswordToUser (20130114002143)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "users" ADD "email" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "token" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "password_digest" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130114002143')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddTopicsToUsers (20130114033114)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "topics" text
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130114033114')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddMoreFieldsToUser (20130115014836)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "school" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "other" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "users"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "school" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "other" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_users"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "altered_users"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "lastname" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "birthday" datetime[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "gender" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "futurehopesanddreams" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "goalinlife" text
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "school" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "school" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_users"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_users"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "academiclevel" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "academicyear" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "college" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text, "academiclevel" varchar(255), "academicyear" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "college" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text, "academiclevel" varchar(255), "academicyear" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_users"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_users"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "highschool" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "highschoolgpa" float
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "satscore" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "satverbalscore" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "satmathscore" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "actscore" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "actmathscore" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "ap" text
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "mathclass" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencymath" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencyreading" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencyscience" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencysocialstudies" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencybusiness" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencyeconomics" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencymusic" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencyforeignlanguage" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencysports" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencycommunityservice" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencypublicspeaking" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencyleadership" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencydance" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "proficiencyart" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "proficiencyacting" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "foreignlanguage" text[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "hourlyrate" float
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130115014836')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to ChangeUserRatetoText (20130115035500)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "college" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text, "academiclevel" varchar(255), "academicyear" varchar(255), "highschool" varchar(255), "highschoolgpa" float, "satscore" integer, "satverbalscore" integer, "satmathscore" integer, "actscore" integer, "actmathscore" integer, "ap" text, "mathclass" varchar(255), "proficiencymath" integer, "proficiencyreading" integer, "proficiencyscience" integer, "proficiencysocialstudies" integer, "proficiencybusiness" integer, "proficiencyeconomics" integer, "proficiencymusic" integer, "proficiencyforeignlanguage" integer, "proficiencysports" integer, "proficiencycommunityservice" integer, "proficiencypublicspeaking" integer, "proficiencyleadership" integer, "proficiencydance" integer, "proficiencyart" integer, "proficiencyacting" integer, "foreignlanguage" text, "hourlyrate" float) 
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "users"
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "college" varchar(255), "hobbies" text, "gpa" float, "testscores" text, "major" varchar(255), "familyincome" varchar(255), "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar(255), "token" varchar(255), "password_digest" varchar(255), "topics" text, "lastname" varchar(255), "birthday" datetime, "gender" varchar(255), "futurehopesanddreams" varchar(255), "goalinlife" text, "academiclevel" varchar(255), "academicyear" varchar(255), "highschool" varchar(255), "highschoolgpa" float, "satscore" integer, "satverbalscore" integer, "satmathscore" integer, "actscore" integer, "actmathscore" integer, "ap" text, "mathclass" varchar(255), "proficiencymath" integer, "proficiencyreading" integer, "proficiencyscience" integer, "proficiencysocialstudies" integer, "proficiencybusiness" integer, "proficiencyeconomics" integer, "proficiencymusic" integer, "proficiencyforeignlanguage" integer, "proficiencysports" integer, "proficiencycommunityservice" integer, "proficiencypublicspeaking" integer, "proficiencyleadership" integer, "proficiencydance" integer, "proficiencyart" integer, "proficiencyacting" integer, "foreignlanguage" text, "hourlyrate" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_users"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_users"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130115035500')
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddLatitudeAndLongitudeToUser (20130116041905)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "latitude" float[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "longitude" float
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130116041905')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to Addstreettouser (20130116045839)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "street" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "city" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "state" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "country" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130116045839')
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to Addphonenumbertouser (20130116051912)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "phonenumber" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130116051912')
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to Addcolortouser (20130116052756)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "favoritecolor" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130116052756')
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddPaperClipToUser (20130116053804)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "avatar_file_name" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "avatar_content_type" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "avatar_file_size" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130116053804')
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCompanies (20130118040849)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "companies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130118040849')
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddDetailsToUser (20130118041852)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "details_id" integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "details_type" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130118041852')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddUserAndIndTable (20130118050834)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" RENAME TO "individuals"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "password_digest" varchar(255), "topics" text, "bio" text, "token" varchar(255), "hourlyrate" varchar(255), "latitude" float, "longitude" float, "street" varchar(255), "city" varchar(255), "state" varchar(255), "country" varchar(255), "phonenumber" varchar(255), "favoritecolor" varchar(255), "avatar_file_name" varchar(255), "avatar_content_type" varchar(255), "avatar_file_size" integer, "details_id" integer, "details_type" varchar(255), "slug" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130118050834')
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePurchasers (20130120035951)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "purchasers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130120035951')
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20130125230346)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT email, count(email) as quantity FROM "users" GROUP BY "users"."email" HAVING quantity > 1[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130125230346')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to ZipAndVerification (20130126002236)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "zipcode" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "emailverified" boolean[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130126002236')
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourses (20130130041520)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category" varchar(255), "description" text, "price" integer, "ongoing" boolean, "startdate" datetime, "enddate" datetime, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130130041520')
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCoursetimes (20130131000457)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "coursetimes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "course_id" integer, "start" time, "end" time, "dayofweek" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130131000457')
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrders (20130201230705)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "cart_id" integer, "ip_address" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "card_type" varchar(255), "card_expires_on" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130201230705')
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateOrderTransactions (20130203025525)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "order_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer, "action" varchar(255), "amount" integer, "success" boolean, "authorization" varchar(255), "message" varchar(255), "params" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130203025525')
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddStreetAndCityAndCountryAndZipToOrders (20130203193751)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "orders" ADD "street" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "orders" ADD "city" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "orders" ADD "country" varchar(3)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "orders" ADD "zip" integer(5)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130203193751')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddStateToOrders (20130203195622)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "orders" ADD "state" varchar(2)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130203195622')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to DropOrders (20130208061949)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "orders"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130208061949')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateOrders2 (20130208062158)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "course_id" integer, "ip_address" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "card_type" varchar(255), "card_expires_on" date, "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130208062158')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to RemoveFieldName (20130310000843)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130310000843')
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-10 06:50:41 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE (details_type = "Company" OR details_type = "Individual")[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" 
+  Rendered home/index.html.slim within layouts/application (78.0ms)
+Compiled bootstrap-responsive.css  (0ms)  (pid 1290)
+Compiled bootstrap.css  (0ms)  (pid 1290)
+Compiled twitter-bootstrap-static/bootstrap.css  (58ms)  (pid 1290)
+Compiled twitter-bootstrap-static/fontawesome.css  (16ms)  (pid 1290)
+Compiled bootstrap_and_overrides.css  (196ms)  (pid 1290)
+Compiled custom.css  (2248ms)  (pid 1290)
+Compiled gmaps4rails.css  (0ms)  (pid 1290)
+Compiled normalize.css  (0ms)  (pid 1290)
+Compiled application.css  (2768ms)  (pid 1290)
+  Rendered layouts/_header.html.slim (17.6ms)
+  Rendered layouts/_footer.html.slim (4.2ms)
+Compiled jquery.js  (2ms)  (pid 1290)
+Compiled jquery_ujs.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-transition.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-alert.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-modal.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-dropdown.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-scrollspy.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-tab.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-tooltip.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-popover.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-button.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-collapse.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-carousel.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-typeahead.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap/bootstrap-affix.js  (0ms)  (pid 1290)
+Compiled twitter/bootstrap.js  (578ms)  (pid 1290)
+Compiled bootstrap.js  (70ms)  (pid 1290)
+Compiled courses.js  (1ms)  (pid 1290)
+Compiled gmaps4rails/gmaps4rails.base.js  (98ms)  (pid 1290)
+Compiled gmaps4rails/gmaps4rails.bing.js  (32ms)  (pid 1290)
+Compiled gmaps4rails/gmaps4rails.googlemaps.js  (52ms)  (pid 1290)
+Compiled gmaps4rails/gmaps4rails.mapquest.js  (24ms)  (pid 1290)
+Compiled gmaps4rails/gmaps4rails.openlayers.js  (43ms)  (pid 1290)
+Compiled orders.js  (8ms)  (pid 1290)
+Compiled application.js  (1320ms)  (pid 1290)
+Completed 200 OK in 4667ms (Views: 4645.1ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /bootstrap.css - 200 OK (1ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /twitter-bootstrap-static/fontawesome.css - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /bootstrap-responsive.css - 200 OK (1ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /twitter-bootstrap-static/bootstrap.css - 200 OK (7ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /custom.css - 200 OK (56ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/mentorhip_image.png" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /mentorhip_image.png - 200 OK (9ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /normalize.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/swim.png" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /swim.png - 200 OK (13ms)
+
+
+Started GET "/assets/kongfu.png" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /kongfu.png - 200 OK (5ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /jquery.js - 200 OK (5ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.base.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails/gmaps4rails.base.js - 200 OK (1ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /orders.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:46 -0500
+Served asset /application.js - 304 Not Modified (24ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2013-03-10 06:50:51 -0500
+Processing by UsersController#new as HTML
+  Rendered users/new.html.slim within layouts/application (6.4ms)
+  Rendered layouts/_header.html.slim (2.9ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 101ms (Views: 29.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:50:52 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "user"=>{"email"=>"user@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user@gmail.com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO "users" ("avatar_content_type", "avatar_file_name", "avatar_file_size", "bio", "city", "country", "created_at", "details_id", "details_type", "email", "emailverified", "favoritecolor", "hourlyrate", "latitude", "longitude", "password_digest", "phonenumber", "slug", "state", "street", "token", "topics", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["avatar_content_type", nil], ["avatar_file_name", nil], ["avatar_file_size", nil], ["bio", nil], ["city", nil], ["country", nil], ["created_at", Sun, 10 Mar 2013 11:51:02 UTC +00:00], ["details_id", nil], ["details_type", nil], ["email", "user@gmail.com"], ["emailverified", nil], ["favoritecolor", nil], ["hourlyrate", nil], ["latitude", nil], ["longitude", nil], ["password_digest", "$2a$10$KD2skKTYDsoLepYAjfJ9vegXB55vEWOgEpFbnLsFuzv7G8rBSW0ma"], ["phonenumber", nil], ["slug", nil], ["state", nil], ["street", nil], ["token", "ftACw7M0a1z5N2FgZaM9Cg"], ["topics", nil], ["updated_at", Sun, 10 Mar 2013 11:51:02 UTC +00:00], ["zipcode", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/chooseType
+Completed 302 Found in 120ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/users/chooseType" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Processing by UsersController#chooseType as HTML
+  Rendered users/chooseType.html.slim within layouts/application (3.6ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1
+  Rendered layouts/_header.html.slim (7.5ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 33ms (Views: 31.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:02 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started POST "/users/choseType" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Processing by UsersController#choseType as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "commit"=>"Parent/Student"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user@gmail.com') AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "purchasers" ("created_at", "firstname", "lastname", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Sun, 10 Mar 2013 11:51:04 UTC +00:00], ["firstname", nil], ["lastname", nil], ["updated_at", Sun, 10 Mar 2013 11:51:04 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "users" SET "details_type" = 'Purchaser', "details_id" = 1, "updated_at" = '2013-03-10 11:51:04.353802' WHERE "users"."id" = 1[0m
+[paperclip] Saving attachments.
+  [1m[35m (0.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/edit
+Completed 302 Found in 53ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."details_id" = 1 AND "users"."details_type" = 'Purchaser' LIMIT 1
+  Rendered users/_form_credentials.html.slim (20.3ms)
+  Rendered users/_form.html.slim (42.7ms)
+  Rendered purchaser/_form.slim (84.8ms)
+  Rendered users/edit.html.slim within layouts/application (90.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.slim (5.2ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 126ms (Views: 114.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /avatar.png - 304 Not Modified (7ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/1/favicon.ico" for 127.0.0.1 at 2013-03-10 06:51:04 -0500
+
+ActionController::RoutingError (No route matches [GET] "/users/1/favicon.ico"):
+  actionpack (3.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.11) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.11) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.11) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.11) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.11) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.11) lib/rails/engine.rb:479:in `call'
+  railties (3.2.11) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.11) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.11) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.11) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.11) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.11) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/suhanma/.rvm/gems/ruby-1.9.3-p362/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started PUT "/purchaser/1" for 127.0.0.1 at 2013-03-10 06:51:08 -0500
+Processing by PurchaserController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "purchaser"=>{"user_attributes"=>{"email"=>"user@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "topics"=>"", "bio"=>"", "hourlyrate"=>"", "street"=>"", "city"=>"", "state"=>"", "country"=>"", "zipcode"=>"", "phonenumber"=>"", "id"=>"1"}, "firstname"=>"", "lastname"=>""}, "commit"=>"Update info", "id"=>"1"}
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."details_id" = 1 AND "users"."details_type" = 'Purchaser' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mPurchaser Load (0.1ms)[0m  [1mSELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('user@gmail.com') AND "users"."id" != 1) LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "purchasers" SET "firstname" = '', "lastname" = '', "updated_at" = '2013-03-10 11:51:09.223747' WHERE "purchasers"."id" = 1[0m
+  [1m[35m (0.1ms)[0m  UPDATE "users" SET "topics" = '', "bio" = '', "hourlyrate" = '', "street" = '', "city" = '', "state" = '', "country" = '', "zipcode" = '', "phonenumber" = '', "updated_at" = '2013-03-10 11:51:09.226521' WHERE "users"."id" = 1
+[paperclip] Saving attachments.
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 468ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mPurchaser Load (0.2ms)[0m  [1mSELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1[0m
+  [1m[35mCourse Load (0.5ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = 1
+  Rendered users/show.html.slim within layouts/application (87.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1
+  Rendered layouts/_header.html.slim (7.1ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 116ms (Views: 112.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /avatar.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:09 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (details_type = "Company" OR details_type = "Individual")[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" 
+  Rendered home/index.html.slim within layouts/application (1.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'ftACw7M0a1z5N2FgZaM9Cg' LIMIT 1[0m
+  [1m[35mPurchaser Load (0.2ms)[0m  SELECT "purchasers".* FROM "purchasers" WHERE "purchasers"."id" = 1 LIMIT 1
+  Rendered layouts/_header.html.slim (8.6ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 35ms (Views: 32.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:10 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Processing by SessionController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 47ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (details_type = "Company" OR details_type = "Individual")[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" 
+  Rendered home/index.html.slim within layouts/application (2.8ms)
+  Rendered layouts/_header.html.slim (3.2ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 31ms (Views: 27.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:18 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Processing by UsersController#new as HTML
+  Rendered users/new.html.slim within layouts/application (2.2ms)
+  Rendered layouts/_header.html.slim (3.7ms)
+  Rendered layouts/_footer.html.slim (0.2ms)
+Completed 200 OK in 32ms (Views: 30.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:19 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "user"=>{"email"=>"individual@gamil.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('individual@gamil.com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("avatar_content_type", "avatar_file_name", "avatar_file_size", "bio", "city", "country", "created_at", "details_id", "details_type", "email", "emailverified", "favoritecolor", "hourlyrate", "latitude", "longitude", "password_digest", "phonenumber", "slug", "state", "street", "token", "topics", "updated_at", "zipcode") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["avatar_content_type", nil], ["avatar_file_name", nil], ["avatar_file_size", nil], ["bio", nil], ["city", nil], ["country", nil], ["created_at", Sun, 10 Mar 2013 11:51:36 UTC +00:00], ["details_id", nil], ["details_type", nil], ["email", "individual@gamil.com"], ["emailverified", nil], ["favoritecolor", nil], ["hourlyrate", nil], ["latitude", nil], ["longitude", nil], ["password_digest", "$2a$10$I1/HhzekgMnjFqMVGmehzOxl8QgUTnGizwMXHuGQ/zfUmeif62p4S"], ["phonenumber", nil], ["slug", nil], ["state", nil], ["street", nil], ["token", "Tr6XCYdFo3Snhqlh_U2OVQ"], ["topics", nil], ["updated_at", Sun, 10 Mar 2013 11:51:36 UTC +00:00], ["zipcode", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/chooseType
+Completed 302 Found in 99ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/users/chooseType" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Processing by UsersController#chooseType as HTML
+  Rendered users/chooseType.html.slim within layouts/application (0.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1
+  Rendered layouts/_header.html.slim (5.2ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 27ms (Views: 26.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:36 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started POST "/users/choseType" for 127.0.0.1 at 2013-03-10 06:51:37 -0500
+Processing by UsersController#choseType as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "commit"=>"Individual"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('individual@gamil.com') AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "individuals" ("academiclevel", "academicyear", "actmathscore", "actscore", "ap", "avatar_content_type", "avatar_file_name", "avatar_file_size", "bio", "birthday", "city", "college", "country", "created_at", "details_id", "details_type", "email", "familyincome", "favoritecolor", "firstname", "foreignlanguage", "futurehopesanddreams", "gender", "goalinlife", "gpa", "highschool", "highschoolgpa", "hobbies", "hourlyrate", "lastname", "latitude", "longitude", "major", "mathclass", "password_digest", "phonenumber", "proficiencyacting", "proficiencyart", "proficiencybusiness", "proficiencycommunityservice", "proficiencydance", "proficiencyeconomics", "proficiencyforeignlanguage", "proficiencyleadership", "proficiencymath", "proficiencymusic", "proficiencypublicspeaking", "proficiencyreading", "proficiencyscience", "proficiencysocialstudies", "proficiencysports", "satmathscore", "satscore", "satverbalscore", "state", "street", "testscores", "token", "topics", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["academiclevel", nil], ["academicyear", nil], ["actmathscore", nil], ["actscore", nil], ["ap", nil], ["avatar_content_type", nil], ["avatar_file_name", nil], ["avatar_file_size", nil], ["bio", nil], ["birthday", nil], ["city", nil], ["college", nil], ["country", nil], ["created_at", Sun, 10 Mar 2013 11:51:38 UTC +00:00], ["details_id", nil], ["details_type", nil], ["email", nil], ["familyincome", nil], ["favoritecolor", nil], ["firstname", nil], ["foreignlanguage", nil], ["futurehopesanddreams", nil], ["gender", nil], ["goalinlife", nil], ["gpa", nil], ["highschool", nil], ["highschoolgpa", nil], ["hobbies", nil], ["hourlyrate", nil], ["lastname", nil], ["latitude", nil], ["longitude", nil], ["major", nil], ["mathclass", nil], ["password_digest", nil], ["phonenumber", nil], ["proficiencyacting", nil], ["proficiencyart", nil], ["proficiencybusiness", nil], ["proficiencycommunityservice", nil], ["proficiencydance", nil], ["proficiencyeconomics", nil], ["proficiencyforeignlanguage", nil], ["proficiencyleadership", nil], ["proficiencymath", nil], ["proficiencymusic", nil], ["proficiencypublicspeaking", nil], ["proficiencyreading", nil], ["proficiencyscience", nil], ["proficiencysocialstudies", nil], ["proficiencysports", nil], ["satmathscore", nil], ["satscore", nil], ["satverbalscore", nil], ["state", nil], ["street", nil], ["testscores", nil], ["token", nil], ["topics", nil], ["updated_at", Sun, 10 Mar 2013 11:51:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mUPDATE "users" SET "details_type" = 'Individual', "details_id" = 1, "updated_at" = '2013-03-10 11:51:38.063598' WHERE "users"."id" = 2[0m
+[paperclip] Saving attachments.
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/2/edit
+Completed 302 Found in 139ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mIndividual Load (0.2ms)[0m  SELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."details_id" = 1 AND "users"."details_type" = 'Individual' LIMIT 1
+  Rendered users/_form_credentials.html.slim (2.5ms)
+  Rendered users/_form.html.slim (1.9ms)
+  Rendered individual/_form.slim (33.4ms)
+  Rendered users/edit.html.slim within layouts/application (35.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.slim (5.6ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 66ms (Views: 59.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /avatar.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/users/2/favicon.ico" for 127.0.0.1 at 2013-03-10 06:51:38 -0500
+
+ActionController::RoutingError (No route matches [GET] "/users/2/favicon.ico"):
+  actionpack (3.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.11) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.11) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.11) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.11) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.11) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.11) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.11) lib/rails/engine.rb:479:in `call'
+  railties (3.2.11) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.11) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.11) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.11) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.11) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.11) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/suhanma/.rvm/gems/ruby-1.9.3-p362/gems/actionpack-3.2.11/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started PUT "/individual/1" for 127.0.0.1 at 2013-03-10 06:51:40 -0500
+Processing by IndividualController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hx3BPfYcspew0Ozpeft3vY/7ko7kVD8fKGFxl5Xpqlo=", "individual"=>{"user_attributes"=>{"email"=>"individual@gamil.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "topics"=>"", "bio"=>"", "hourlyrate"=>"", "street"=>"", "city"=>"", "state"=>"", "country"=>"", "zipcode"=>"", "phonenumber"=>"", "id"=>"2"}, "firstname"=>"", "lastname"=>"", "birthday(1i)"=>"2000", "birthday(2i)"=>"3", "birthday(3i)"=>"10", "gender"=>"Male", "academiclevel"=>"High School", "academicyear"=>"Freshman", "college"=>"", "major"=>"", "gpa"=>"", "satscore"=>"", "actscore"=>""}, "commit"=>"Update info", "id"=>"1"}
+  [1m[35mIndividual Load (0.3ms)[0m  SELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."details_id" = 1 AND "users"."details_type" = 'Individual' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mIndividual Load (0.2ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE (LOWER("users"."email") = LOWER('individual@gamil.com') AND "users"."id" != 2) LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mUPDATE "individuals" SET "firstname" = '', "lastname" = '', "gender" = 'Male', "academiclevel" = 'High School', "academicyear" = 'Freshman', "college" = '', "major" = '', "birthday" = '2000-03-10 00:00:00.000000', "updated_at" = '2013-03-10 11:51:41.117839' WHERE "individuals"."id" = 1[0m
+  [1m[35m (0.1ms)[0m  UPDATE "users" SET "topics" = '', "bio" = '', "hourlyrate" = '', "street" = '', "city" = '', "state" = '', "country" = '', "zipcode" = '', "phonenumber" = '', "updated_at" = '2013-03-10 11:51:41.120870' WHERE "users"."id" = 2
+[paperclip] Saving attachments.
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 141ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mIndividual Load (0.2ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = 2
+  Rendered users/show.html.slim within layouts/application (4.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1
+  Rendered layouts/_header.html.slim (7.1ms)
+  Rendered layouts/_footer.html.slim (0.2ms)
+Completed 200 OK in 37ms (Views: 34.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /avatar.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:41 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (details_type = "Company" OR details_type = "Individual")[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mIndividual Load (0.4ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  Rendered home/index.html.slim within layouts/application (7.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.slim (6.9ms)
+  Rendered layouts/_footer.html.slim (0.1ms)
+Completed 200 OK in 38ms (Views: 34.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /normalize.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /avatar.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /orders.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 06:51:42 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-10 07:09:56 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (details_type = 'Company' OR details_type = 'Individual')[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mIndividual Load (0.3ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  Rendered home/index.html.slim within layouts/application (177.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."token" = 'Tr6XCYdFo3Snhqlh_U2OVQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "individuals".* FROM "individuals" WHERE "individuals"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_header.html.slim (19.5ms)
+  Rendered layouts/_footer.html.slim (5.0ms)
+Completed 200 OK in 455ms (Views: 408.9ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /gmaps4rails.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /normalize.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/avatar.png" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /avatar.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.bing.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /gmaps4rails/gmaps4rails.bing.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.mapquest.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /gmaps4rails/gmaps4rails.mapquest.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.openlayers.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /gmaps4rails/gmaps4rails.openlayers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /orders.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-10 07:09:57 -0500
+Served asset /application.js - 304 Not Modified (26ms)

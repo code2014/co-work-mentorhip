@@ -1,0 +1,42 @@
+header.navbar.navbar-fixed-top
+      .navbar-inner 
+        .container
+          a.brand href="/"MentorHip
+          .container-fluid
+            nav
+              ul.nav.pull-right 
+                -if current_user 
+                li.dropdown
+                  a.dropdown-toggle data-toggle="dropdown"  href="#" 
+                    =current_user.name
+                    b.caret
+                  ul.dropdown-menu aria-labelledby="dropdownMenu" role="menu"
+                    li= link_to "View Profile", current_user
+                    li= link_to "Edit Profile", edit_user_path(current_user)
+                    li=link_to "Manage Courses", courses_path
+                  li= link_to "Log out", logout_path
+                -else
+                  li= link_to "Log in", "#", {:title=>"Log in", :id=>"login_btn", :'data-placement'=>"bottom"}
+                  li= link_to "Sign up", new_user_path 
+                  
+
+              .row-fluid
+                      
+                      = search_form_for @q, :url => search_path, :html => {:method => :get, :class=>"form-search"}  do |f|
+                        .input-append style="margin-bottom: -19px;"
+                         =f.text_field :topics_cont, :class=>"search-query input-xlarge", :placeholder=>"Search for a class, program, camp, or mentor"
+                         =f.submit "Search", :class=>"btn", :name=>nil
+
+                       
+    
+      .hide#login_form
+        = form_tag :controller => "session", :action => "create", :method => "post" do
+          p
+            = text_field_tag :email, params[:email], :placeholder=>"Email", :class=>"input-medium"
+          p
+            = password_field_tag :password, '', :placeholder => "Password", :class=>"input-medium"
+          p
+            = check_box_tag 'remember', true, true
+            |  Remember me
+          p.button  = submit_tag "Log in",:class=>"btn"
+          

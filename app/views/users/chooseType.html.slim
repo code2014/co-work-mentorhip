@@ -1,0 +1,8 @@
+.container-fluid  	
+	h1 What kind of Provider are you?
+	.row.span6 style="margin-left: 247px;"
+	    .text-center
+	        = form_tag users_choseType_path do
+			    = submit_tag "Company" , :class=>"btn"
+			    = submit_tag "Individual", :class=>"btn"
+			    = submit_tag "Parent/Student" , :class=>"btn" 

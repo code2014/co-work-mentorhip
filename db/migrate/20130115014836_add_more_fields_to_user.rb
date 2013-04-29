@@ -1,0 +1,40 @@
+class AddMoreFieldsToUser < ActiveRecord::Migration
+  def change
+    rename_column :users, :name, :firstname
+    add_column :users, :lastname, :string
+    add_column :users, :birthday, :datetime
+    add_column :users, :gender, :string
+    add_column :users, :futurehopesanddreams, :string
+    add_column :users, :goalinlife, :text
+    rename_column :users, :other, :bio
+    add_column :users, :academiclevel, :string
+    add_column :users, :academicyear, :string
+    rename_column :users, :school, :college
+    add_column :users, :highschool, :string
+    add_column :users, :highschoolgpa, :float
+    add_column :users, :satscore, :integer
+    add_column :users, :satverbalscore, :integer
+    add_column :users, :satmathscore, :integer
+    add_column :users, :actscore, :integer
+    add_column :users, :actmathscore, :integer
+    add_column :users, :ap, :text
+    add_column :users, :mathclass, :string
+    add_column :users, :proficiencymath, :integer
+    add_column :users, :proficiencyreading, :integer
+    add_column :users, :proficiencyscience, :integer
+    add_column :users, :proficiencysocialstudies, :integer
+    add_column :users, :proficiencybusiness, :integer
+    add_column :users, :proficiencyeconomics, :integer
+    add_column :users, :proficiencymusic, :integer
+    add_column :users, :proficiencyforeignlanguage, :integer
+    add_column :users, :proficiencysports, :integer
+    add_column :users, :proficiencycommunityservice, :integer
+    add_column :users, :proficiencypublicspeaking, :integer
+    add_column :users, :proficiencyleadership, :integer
+    add_column :users, :proficiencydance, :integer
+    add_column :users, :proficiencyart, :integer
+    add_column :users, :proficiencyacting, :integer
+    add_column :users, :foreignlanguage, :text
+    add_column :users, :hourlyrate, :float
+  end
+end

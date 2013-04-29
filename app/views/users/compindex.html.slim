@@ -1,0 +1,23 @@
+
+h1 Users
+
+= search_form_for @companies, :url => search_path, :html => {:method => :get, :class=>"form-search"}  do |f|
+ .input-append
+    =f.text_field :topics_cont, :class=>"search-query input-xlarge"
+    =f.submit "Search", :class=>"btn", :name=>nil
+-if (@users.length > 0)
+  ul.user_catalog
+    - @users.each do |user|
+      li
+        =image_tag user.avatar_url
+        h3=link_to user.name, user
+        p 
+          b Provider expertise: 
+          = user.topics
+        p 
+          b About the Provider: 
+          = user.bio
+        /td = link_to 'Edit', edit_user_path(user)
+        /td = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+-else
+  h2 There are no mentors for this topic currently.

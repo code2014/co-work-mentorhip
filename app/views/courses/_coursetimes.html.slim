@@ -1,0 +1,17 @@
+hr
+h3 Course Times
+.field
+  = f.label :start
+  = f.time_select :start
+.field
+  = f.label :end
+  = f.time_select :end
+.field
+  =f.label :dayofweek
+  == f.select :dayofweek, [['Monday', 'monday'], 
+      ['Tuesday', 'tuesday'], 
+      ['Wednesday', 'wednesday'],
+      ['Thursday', 'thursday'],
+      ['Friday', 'friday'],
+      ['Saturday', 'saturday'],
+      ['Sunday', 'sunday']]

@@ -1,0 +1,9 @@
+li
+  = coursetime.dayofweek
+  '  
+  = coursetime.start.strftime("%H:%M")
+  '  - 
+  = coursetime.end.strftime("%H:%M")
+  - if @course.user == current_user
+    '  
+    = link_to "remove", [@course, coursetime], method: :delete, style: "color: red"

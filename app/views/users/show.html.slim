@@ -1,0 +1,41 @@
+.container-fluid
+  -if (@user)
+        .well style="background-color:transparent;"
+          .row-fluid
+            h3.text-center = @user.name
+            -if (@user.address)
+              p.muted.text-center = @user.address
+            .text-center  
+              =image_tag @user.avatar_url, :class=>"CompanyInformationPhoto"
+            br
+              p.span11.well = @user.bio
+          
+          .row-fluid
+              -if (@user.courses.length > 0)
+                h4 Courses Offered
+                table.table
+                  thead
+                    tr
+                      th Title
+                      th Monday
+                      th Tuesday
+                      th Wednesday
+                      th Thursday
+                      th Friday
+                      th Saturday
+                      th Sunday
+                      th Purchase
+                  -@user.courses.each do |course|
+                    tr
+                      td.info
+                        =link_to course.name, course
+                      =raw generate_week_td course
+                      td 
+                        -if course.ongoing
+                          | Ongoing
+                        = link_to "$#{course.price}", new_order_path(:course_id => course.id),class: "btn btn-info", style: "color: white"
+                      
+        
+                
+  -else
+   h4.text-center There is no such user!

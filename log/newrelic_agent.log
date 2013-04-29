@@ -1,0 +1,37 @@
+# Logfile created on 2013-03-10 00:10:27 -0600 by logger.rb/31641
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Starting the New Relic Agent.
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Environment: development
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Dispatcher: thin
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Application: My Application
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] WARN : Agent configured not to send data in this environment.
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing ActiveMerchant instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing ActiveRecord instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing Net instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing Rails 3 Controller instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Installing Rails3 Error instrumentation
+[03/10/13 00:10:27 -0600 suhans-MacBook-Air.local (781)] INFO : Finished instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Starting the New Relic Agent.
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Environment: development
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Dispatcher: thin
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Application: My Application
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] WARN : Agent configured not to send data in this environment.
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing ActiveMerchant instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing ActiveRecord instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing Net instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing Rails 3 Controller instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Installing Rails3 Error instrumentation
+[03/10/13 06:47:33 -0500 suhans-MacBook-Air.local (1290)] INFO : Finished instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Starting the New Relic Agent.
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Environment: development
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Dispatcher: thin
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Application: My Application
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] WARN : Agent configured not to send data in this environment.
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing ActiveMerchant instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing ActiveRecord instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing Net instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing Rails 3 Controller instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Installing Rails3 Error instrumentation
+[03/10/13 07:09:43 -0500 suhans-MacBook-Air.local (1569)] INFO : Finished instrumentation
