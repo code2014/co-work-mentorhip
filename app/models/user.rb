@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :details
   
   
-  attr_accessible :email, :topics,:bio, :password, :password_confirmation, :avatar, :latitude, :longitude, :street, :city, :state, :country, :phonenumber, :slug, :hourlyrate, :zipcode
+  attr_accessible :email, :topics,:bio, :password, :password_confirmation, :avatar, :latitude, :longitude, :street, :city, :state, :country, :phonenumber, :slug, :hourlyrate, :zipcode, :latitude, :longtitude
   before_save { |user| user.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -22,6 +22,14 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_inclusion_of:details_type, :in=>["Company","Individual","Purchaser"], :allow_nil=>true
   
+  acts_as_gmappable validation: false
+      def gmaps4rails_address
+          self.address
+      end
+      def gmaps4rails_infowindow
+        "<h4>#{address}</h4>"
+      end
+
   #Location: look into geocoder https://github.com/alexreisner/geocoder
 
   #def to_param
