@@ -1,19 +1,24 @@
 require 'pry'
 
 def init
-  number=['2','3','4','5','6','7','8','9','10','J','Q','K']
-	suit=['H','D','S','C']
-	card= number.product(suit)
-	card.shuffle!
+  card=[]
   mycard=[]
-	dealercard=[]
-	mycard<<card.pop
-	dealercard<<card.pop
-	mycard<<card.pop
-	dealercard<<card.pop
-	[dealercard,mycard,card]
+  dealercard=[]
+  number=['2','3','4','5','6','7','8','9','10','J','Q','K']
+  suit=['H','D','S','C']
+  card= number.product(suit)
+  card.shuffle!
+  mycard<<card.pop
+  dealercard<<card.pop
+  mycard<<card.pop
+  dealercard<<card.pop
 end
 
+def welcome
+	puts "What's your name?"
+	name=gets.chomp
+	puts "Hi,#{name}! Welcome to blackjack!"
+end
 
 def total(card)
   total=0
@@ -64,33 +69,30 @@ def show_condition(dealercard,mycard)
 	puts 'Do you want to: 1)stand 2)hit'
 end
 
+
 def get_condition
 	stand_hit=gets.chomp
 end
 
 
-puts "Welcome to blackjack!"
-dealercard=[]
-mycard=[]
-card=[]
-dealercard,mycard,card=init
-show_condition(dealercard,mycard)
-get_condition
-while total(mycard)<21
-  if get_condition=='1'
-	  dealer_hit()
-  else	 
-    mycard<<card.pop
-	  show_condition(dealercard,mycard)
-	  get_condition
-	end
-end
+welcome
+  show_condition(dealercard,mycard)
+  get_condition
+  while total(mycard)<21
+    if get_condition=='1'
+  	  dealer_hit()
+    else	 
+      mycard<<card.pop
+  	  show_condition(dealercard,mycard)
+  	  get_condition
+    end
+  end
 
-if total(mycard)==21
-	puts "You win."
-else
-	puts "You lose."
-end
+  if total(mycard)==21
+  	puts "You win."
+  else
+  	puts "You lose."
+  end
 
 
 
