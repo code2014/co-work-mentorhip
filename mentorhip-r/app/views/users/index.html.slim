@@ -1,0 +1,78 @@
+.container-fluid
+  .row-fluid
+    .span5.alert style="width:300px;margin-bottom:0px;padding-bottom:85px;"
+      h4 = request.location.city
+      = search_form_for @q, :url => search_path, :html => {:method => :get, :class=>"form-search"}  do |f|
+       .field
+          =f.label :topics_cont, "Course Type"
+          =f.text_field :topics_cont, :class=>"input-xlarge", :placeholder => "What kind of course do you want?"
+          .field
+            =f.label :within, "Search Range"
+            = text_field_tag :within, params[:within], :class => "input-xlarge",:placeholder => "How many miles?"
+            .field
+              =f.label :city, "City Name"
+              = text_field_tag :city, params[:city], :class => "input-xlarge", :placeholder => "In which city?"
+
+       br
+       =f.submit "Search", :class=>"btn pull-right", :name=>nil
+         
+
+    = gmaps4rails(@json)
+      
+	
+  .row-fluid
+    = paginate @users  
+    -if (@users.length > 0)
+
+      table.table
+        thead
+          tr
+            th
+            th 
+        - @users.each do |user|
+          -if user.details_type.eql?('Company') or user.details_type.eql?('Individual')
+            tr
+              td style="width:20%;"
+                h4=link_to user.name, user
+                -if user.priority > 0
+                  =image_tag user.avatar_url, :class=>"profilePhoto",:style=>"width:265px;" 
+                p
+                  -if (user.bio)
+                    ="#{user.bio[0..80]}... "
+              td style="width:80%"
+                -if (user.courses.length > 0)
+                  table.table
+                      thead
+                        tr
+                          th Title
+                          th Monday
+                          th Tuesday
+                          th Wednesday
+                          th Thursday
+                          th Friday
+                          th Saturday
+                          th Sunday
+                          /th Purchase
+                      -user.courses.each do |course|
+                        tr
+                          td.info
+                            =link_to course.name, course
+                          =raw generate_week_td course
+                          /td 
+                          /  = link_to "$#{course.price}", new_order_path(:course_id => course.id),class: /"btn btn-info", style: "color: white"
+                -else
+                   // h4 There are no courses available currently. 
+                   -if user.details_type.eql?('Company') or user.details_type.eql?('Individual')
+                     -if (user.details.weburl !="")
+                       h5 You can go to this provider's website to get more information.
+                       =link_to user.details.weburl, url_with_protocol(user.details.weburl), :target => '_blank'
+                     -if (user.phonenumber !="")
+                       h5 Or call them directly.
+                       = "#{user.phonenumber}"
+
+
+                                 
+        .pull-right = paginate @users    
+
+    -else
+      h4 There are no mentors for this topic currently.

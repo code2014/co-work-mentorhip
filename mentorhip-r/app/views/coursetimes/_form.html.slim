@@ -1,0 +1,10 @@
+.form
+  = form_for [@course, @course.coursetimes.new] do |f|
+    = f.label :start
+    = f.time_select :start, { minute_step: 15 }, class: "span1"
+    = f.label :end
+    = f.time_select :end, { minute_step: 15 }, class: "span1"
+    = f.label :dayofweek
+    = f.select :dayofweek, Date::DAYNAMES
+    p
+    = f.submit "Create New Course Time", class: "btn btn-info"

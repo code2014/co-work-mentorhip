@@ -1,0 +1,118 @@
+.container-fluid
+  .span3.well.sidebar-nav  style="width: 180px;"
+    ul.nav.nav-list
+      li
+        =link_to "Academics", "search?utf8=✓&q%5Btopics_cont%5D=Academics", class:"nav-header"
+      li
+        =link_to "Math", "search?utf8=✓&q%5Btopics_cont%5D=Math"
+      li
+        =link_to "Reading", "search?utf8=✓&q%5Btopics_cont%5D=Reading"
+      li
+        =link_to "Science", "search?utf8=✓&q%5Btopics_cont%5D=Science"
+      li
+        =link_to "Athletics and Sports", "search?utf8=✓&q%5Btopics_cont%5D=Athletics", class:"nav-header"
+      li
+        =link_to "Martial Arts", "search?utf8=✓&q%5Btopics_cont%5D=Martial Arts"
+      li
+        =link_to "Soccer", "search?utf8=✓&q%5Btopics_cont%5D=Soccer"
+      li
+        =link_to "Swimming", "search?utf8=✓&q%5Btopics_cont%5D=swim"
+      li
+        =link_to "Dance and Music", "search?utf8=✓&q%5Btopics_cont%5D=Dance and Music",class:"nav-header"
+      li
+        =link_to "Ballet", "search?utf8=✓&q%5Btopics_cont%5D=ballet"
+      li
+        =link_to "Piano", "search?utf8=✓&q%5Btopics_cont%5D=piano"
+      li
+        =link_to "Music", "search?utf8=✓&q%5Btopics_cont%5D=music"
+      li
+        =link_to "See more...", users_path
+  
+  .span9 
+    .hero-unit style="padding:0px;"
+      .carousel.slide#myCarousel
+        ol.carousel-indicators
+          li.active data-slide-to="0" data-target="#myCarousel"
+          li data-slide-to="1" data-target="#myCarousel"
+          li data-slide-to="2" data-target="#myCarousel"
+        .carousel-inner
+          .item.active
+            =image_tag "mentorhip_image.png"
+            .carousel-caption
+              h4 MentorHip
+              p style="font-family:Helvetica Neue;font-size:14px;" 
+                | Discover new interests, develop new talents, enrich your lives
+                br Search, select, schedule, and manage classes, programs, camps, and mentors
+          .item
+            =image_tag "dance.jpg"
+            .carousel-caption
+              h4 Dance and Music Academy of Glenview
+              p style="font-family:Helvetica Neue;font-size:14px;" 
+                | Dance & Music Academy provides music and dance lessons for ages 3 - Adult in Chicago-Edgebrook and Glenview. 
+          .item
+            =image_tag "kongfu.png"
+            .carousel-caption
+              h4 AKYI Martial Arts 
+              p style="font-family:Helvetica Neue;font-size:14px;" 
+                | Our classes help a student develop skills and positive traits that can build a strong foundation and positive habits that can last a lifetime.
+
+        a.carousel-control.left href="#myCarousel" data-slide="prev" &lsaquo;
+        a.carousel-control.right href="#myCarousel" data-slide="next" &rsaquo;
+.container-fluid
+  .row-fluid
+    .container-fluid
+      .span8
+        .row-fluid
+          h3 style="float:left;" 
+            =link_to "Popular Classes", users_path
+        .row-fluid 
+          ul.classes 
+            -@popular.each do |pop|
+              li.span6
+                .HomeIndexPhoto  =link_to image_tag(pop.avatar_url), pop
+                h4=link_to pop.name, pop
+                span="#{pop.city}, #{pop.state}"
+                / p.categories Category
+
+                p.blurb
+                  -if (pop.bio)
+                    ="#{pop.bio[0..144]}... "
+                  =link_to "See more", pop
+        .row-fluid
+          h3 style="float:left;" 
+            =link_to "Recommended Classes", users_path
+        .row-fluid
+          ul.classes
+            -@recommended.each do |rec|
+              li.span5 style="width: 47.426%;"
+                .RecommendPhoto =link_to image_tag(rec.avatar_url), rec
+                h4=link_to rec.name, rec
+                p="#{rec.city}, #{rec.state}"
+
+      .span4.well.sidebar-nav
+        h3 =link_to "Promoted Class", @promoted
+        .recommended
+          -if (@promoted)
+            .HomeIndexPhoto  = link_to image_tag(@promoted.avatar_url), @promoted
+            h4=link_to @promoted.name, @promoted
+            p="#{@promoted.city}, #{@promoted.state}"
+            / p.categories Category
+            p.blurb 
+              -if (@promoted.bio)
+                ="#{@promoted.bio[0..144]}... "
+              
+
+        h3 =link_to "Featured Class", @nonprofit
+        .recommended
+          -if(@nonprofit)
+            .HomeIndexPhoto  = link_to image_tag(@nonprofit.avatar_url), @nonprofit
+            h4=link_to @nonprofit.name, @nonprofit
+            p="#{@nonprofit.city}, #{@nonprofit.state}"
+            / p.categories Category
+            p.blurb 
+              -if (@nonprofit.bio)
+                ="#{@nonprofit.bio[0..144]}... "
+              
+
+
+    

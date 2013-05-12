@@ -1,0 +1,23 @@
+= form_for @details do |f|
+  - if @details.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@details.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @details.errors.full_messages.each do |message|
+          li = message
+  
+  =f.fields_for :user, @details.user do |fu|
+    == render 'users/form_credentials', :f => fu
+    
+    = f.label :name, "Name"
+    = f.text_field :name, :placeholder => "Name of Company"
+  
+    = f.label :weburl, "Website"
+    = f.text_field :weburl, :placeholder => "http://www.yourwebsite.com"
+
+    == render 'users/form', :f => fu
+    
+  .actions = f.submit 'Update',:class=>"btn"
+= link_to 'Show', @user
+' &nbsp;|
+= link_to 'Back', users_path

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  course_id: 1
+  start: 2013-01-30 18:04:58
+  end: 2013-01-30 18:04:58
+  dayofweek: MyString
+
+two:
+  course_id: 1
+  start: 2013-01-30 18:04:58
+  end: 2013-01-30 18:04:58
+  dayofweek: MyString

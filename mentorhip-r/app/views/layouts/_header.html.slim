@@ -1,0 +1,32 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      button.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" type="button"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a#logo href="/"
+        = image_tag 'MH-logo.png' , :alt => 'MentorHip' , :class => 'visible-desktop'
+        = image_tag 'MH-logo-small.png' , :alt => 'MentorHip' , :class => 'hidden-desktop'
+      .nav-collapse.collapse
+        ul.nav.pull-right 
+          - unless user_signed_in?
+            li= link_to 'Sign Up' , new_user_path 
+      
+          - else
+            li.dropdown
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                = current_user.email
+                b.caret
+              ul.dropdown-menu
+                li= link_to 'View Profile', current_user
+                li= link_to 'Edit Profile', edit_user_path(current_user)
+                - unless current_user.details.is_a?(Purchaser)
+                  li= link_to "Manage Courses", courses_path
+                li= link_to "Log out", logout_path
+        .row-fluid                      
+          = search_form_for @q, :url => search_path, :html => {:method => :get, :class=>"form-search"}  do |f|
+            .input-append style="margin-bottom: -50px;"
+              =f.text_field :topics_cont, :class=>"search-query input-xlarge", :placeholder=>"Search for a class, program, camp, or mentor"
+              =f.submit "Search", :class=>"btn", :name=>nil 
+

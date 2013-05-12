@@ -1,0 +1,24 @@
+.container-fluid  
+  h1 New user
+  .row.span6.well style="margin-left: 213px;"
+    = form_for @user do |f|
+      - if @user.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+          ul
+            - @user.errors.full_messages.each do |message|
+              li = message
+
+      .field
+        = f.text_field :email, :placeholder => "Email@email.com"
+        
+      .field
+        = f.password_field :password, :placeholder => "Password"
+        
+      .field
+        = f.password_field :password_confirmation, :placeholder => "Retype Password"
+      .actions = f.submit 'Sign up',:class=>"btn"
+      
+
+
+    = link_to 'Back', users_path

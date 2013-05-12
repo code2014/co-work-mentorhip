@@ -1,0 +1,143 @@
+@charset "UTF-8";
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -180px;
+}
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+  min-height: 180px;
+}
+#footer {
+	background-color: #5f3713;
+	background-image: url(../img/bg_texture.png);
+}
+#footer h3 {
+	color: #f9b617;
+	line-height: normal;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	font-weight: 700;
+	font-size: 20px;
+}
+#footer p {
+	color: #fff;
+}
+#footer .span3 {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #f9b617;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 15px;
+	min-height: 150px;
+}
+#footer img {
+	margin-right: 10px;
+}
+#logo{
+	float: left;
+	display: block;
+	margin-left: 0pt;
+	margin-bottom: -15px;
+	margin-right: 20px;
+	-webkit-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+	box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+	/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer, .hero {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-left: 20px;
+	padding-right: 20px;
+  }
+}
+@media (max-width: 979px) {
+.hero {
+	margin-top: -20px;
+	padding-top: 30px !important;
+}
+.hero h1 {
+	font-size: 36px !important;
+}
+#bird{
+	width: 227px;
+}
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.thumbnail {
+	background-color: #faf6bd;
+	border: 1px solid #e55328;
+	padding: 15px;
+	min-height: 315px;
+}
+.thumbnails h1 {
+	font-size: 30px;
+	color: #c94324;
+	line-height: normal;
+}
+.thumbnails h4 {
+	font-weight: 500;
+	color: #5f3713;
+}
+.hero {
+	background-image: url(/assets/bg_texture.png),-moz-linear-gradient(top, #afdfe4, #75cbcf);
+	background-image: url(/assets/bg_texture.png),-webkit-gradient(linear, 0 0, 0 100%, from(#afdfe4), to(#75cbcf));
+	background-image: url(/assets/bg_texture.png),-webkit-linear-gradient(top, #afdfe4, #75cbcf);
+	background-image: url(/assets/bg_texture.png),-o-linear-gradient(top, #afdfe4, #75cbcf);
+	background-image: url(/assets/bg_texture.png),linear-gradient(to bottom, #afdfe4, #75cbcf);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffafdfe4', endColorstr='#ff75cbcf', GradientType=0);
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	padding-top: 120px;
+}
+.hero h1 {
+	color: #faf6bd;
+	text-shadow: 0 0 15px rgba(0,0,0,0.6),0 -1px 1px rgba(0,0,0,0.6);
+	margin-top: 30px;
+	margin-bottom: 15px;
+	font-size: 48px;
+	line-height: normal;
+}
+.hero h2 {
+	color: #cc4425;
+	margin-bottom: 30px;
+}
+.hero h3 {
+	color: #5f3713;
+	line-height: normal;
+	font-size: 20px;
+}
+.hero img {
+	margin: 15px;
+}
+input.btn-block {
+	font-family: Dosis, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 24px !important;
+	font-weight: 500;
+}
+.thumbnail img {
+	-webkit-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+	box-shadow:1px 1px 4px rgba(0, 0, 0, 0.1);
+}
